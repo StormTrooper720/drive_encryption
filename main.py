@@ -31,6 +31,10 @@ def encrypt(filename):
 print("Encrypting files... This may take awhile...")
 with alive_bar(len(list_of_files)) as bar:
     for name in list_of_files:
-        encrypt(name)
+        try:
+            os.chmod(name, 775)
+            encrypt(name)
+        except:
+            pass
         bar()
 print(f"Done! All file in {path} are encrypted")
